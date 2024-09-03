@@ -56,3 +56,5 @@ function playGame() {
         console.log("Computer's score is " + computerScore);
     }
 }
+
+playGame();
