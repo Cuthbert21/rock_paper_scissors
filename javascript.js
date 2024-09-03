@@ -11,3 +11,8 @@ function getComputerChoice() {
     }
     return console.log(computerChoiceString);
 }
+
+function getHumanChoice() {
+    let humanChoice = prompt("Make a choice!").toLowerCase();
+    return console.log(humanChoice)
+}
