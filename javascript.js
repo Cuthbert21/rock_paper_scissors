@@ -48,3 +48,11 @@ function playRound() {
         computerScore++;
     } 
 }
+
+function playGame() {
+    for (i=0; i<5; i++){
+        playRound();
+        console.log("Your score is " + humanScore);
+        console.log("Computer's score is " + computerScore);
+    }
+}
