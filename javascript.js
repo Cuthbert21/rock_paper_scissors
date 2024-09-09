@@ -17,6 +17,11 @@ function getComputerChoice() {
     return computerChoiceString;
 }
 
+const rock = document.querySelector("#rock");
+rock.addEventListener("click", () => {
+  alert("Hello World");
+});
+
 function getHumanChoice() {
     let humanChoice = prompt("Make a choice!").toLowerCase();
     console.log("Human Choice is " + humanChoice)
@@ -57,4 +62,4 @@ function playGame() {
     }
 }
 
-playGame();
+// playGame();
