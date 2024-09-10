@@ -1,8 +1,8 @@
 console.log("Hello World")
 
-humanScore = 0;
+let humanScore = 0;
 
-computerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random()*3);
@@ -19,7 +19,17 @@ function getComputerChoice() {
 
 const rock = document.querySelector("#rock");
 rock.addEventListener("click", () => {
-  alert("Hello World");
+    playRound("rock");
+});
+
+const paper = document.querySelector("#paper");
+paper.addEventListener("click", () => {
+    playRound("paper");
+});
+
+const scissors = document.querySelector("#scissors");
+scissors.addEventListener("click", () => {
+    playRound("scissors");
 });
 
 function getHumanChoice() {
@@ -28,8 +38,8 @@ function getHumanChoice() {
     return humanChoice
 }
 
-function playRound() {
-    const humanSelection = getHumanChoice();
+function playRound(humanChoice) {
+    const humanSelection = humanChoice;
     const computerSelection = getComputerChoice();
     if (humanSelection === computerSelection) {
         console.log("Draw")
@@ -52,7 +62,56 @@ function playRound() {
         console.log("You lose! Scissors beats Paper");
         computerScore++;
     } 
+    humanScoreText.textContent = "Your score is " + humanScore;
+    computerScoreText.textContent = "Computer score is " + computerScore;
+
+    results.appendChild(humanScoreText);
+    results.appendChild(computerScoreText);
+
+    let gameOver=false;
+
+    if (humanScore == 5) {
+        results.appendChild(youWon);
+        gameOver = true;
+    } else if (computerScore == 5) {
+        results.appendChild(computerWon);
+        gameOver = true;
+    }
+
+    if(gameOver === true){
+        rock.remove();
+        paper.remove();
+        scissors.remove();
+        humanScore = 0;
+        computerScore = 0;
+        results.appendChild(restartText);
+        results.appendChild(restartBtn);
+    }
+
+    restartBtn.addEventListener("click", () => {
+        buttons.appendChild(rock);
+        buttons.appendChild(paper);
+        buttons.appendChild(scissors)
+        results.innerHTML = ''
+    });
+
 }
+
+const buttons = document.querySelector(".buttons")
+
+
+
+const results = document.querySelector(".results");
+
+const humanScoreText = document.createElement("p");
+
+const computerScoreText = document.createElement("p");
+
+const restartBtn = document.createElement("button");
+
+restartBtn.textContent = "Restart";
+
+
 
 function playGame() {
     for (i=0; i<5; i++){
@@ -60,6 +119,23 @@ function playGame() {
         console.log("Your score is " + humanScore);
         console.log("Computer's score is " + computerScore);
     }
+}
+
+const youWon = document.createElement("p");
+
+const computerWon = document.createElement("p");
+
+const restartText = document.createElement("p");
+
+youWon.textContent = "You won!";
+
+computerWon.textContent = "The computer has won!";
+
+restartText.textContent = "Click the button to start again";
+
+if (humanScore > 5) {
+    results.appendChild(youWon);
+    console.log("Should appear")
 }
 
 // playGame();
